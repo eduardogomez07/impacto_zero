@@ -45,7 +45,7 @@ Supervisión: Cada prototipo debe ser homologado por la mesa técnica antes del 
 
 ## Como participar
 
-(en contrucción)
+(en construcción)
 
 If not already done, [sign in](https://github.com/login) to your GitHub account or [create one](https://github.com/signup) if you don't have any.
 
