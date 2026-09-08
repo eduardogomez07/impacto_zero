@@ -1,6 +1,6 @@
 <span id="title">
 
-# Competition Organizer Template
+# Competencia IMPACTO ZERO - UPATecO
 
 </span>
 
