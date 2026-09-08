@@ -1,83 +1,275 @@
-#VRML_SIM R2023b utf8
+#VRML_SIM R2025a utf8
 
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/CircleArena.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/robots/mobsya/thymio/protos/Thymio2.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/factory/containers/protos/WoodenBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/buildings/protos/LargeResidentialTower.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/advertising_board/protos/AdvertisingBoard.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/animals/protos/Fox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/BrushedAluminium.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/solids/protos/SolidBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/street_furniture/protos/Bench.proto"
 
 WorldInfo {
   info [
-    "Competition objective: "
-    "learn how to program a robot."
-  ]
-  title "Container Robot Programming"
-  window "robot_programming_competition"
-  basicTimeStep 20
-  contactProperties [
-    ContactProperties {
-      material2 "thymio body"
-      coulombFriction [
-        0.7
-      ]
-    }
+    ""
   ]
 }
 Viewpoint {
-  orientation 0.22852818692454097 -0.3392704292446562 -0.9125077772935027 5.090665724609216
-  position -0.720382336266731 -1.1273242494093503 0.6798160854057501
+  orientation 0.08838263798546034 0.024599813813517914 -0.9957827867878976 2.600815468462981
+  position 14.386316423172532 5.0381755413855345 5.259667210299216
+  follow "bench"
+  followType "Mounted Shot"
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
-CircleArena {
-  wallThickness 0.05
-}
-DEF COMPETITION_ROBOT Thymio2 {
-  rotation 0 0 1 3.14159
-  name "participant"
-  controller "participant"
-  controllerArgs []
-  window "<none>"
-  synchronization FALSE
-}
-DEF COMPETITION_SUPERVISOR Robot {
+Solid {
   children [
-    Emitter {
-      channel 1024
+    Floor {
+      size 40 40
+      tileSize 0.25 0.25
+    }
+    SolidBox {
+      translation 20.005 0 0.025
+      name "wall"
+      size 0.01 40 0.05
+      appearance BrushedAluminium {
+      }
+    }
+    SolidBox {
+      translation -20.005 0 0.025
+      name "wall#2"
+      size 0.01 40 0.05
+      appearance BrushedAluminium {
+      }
+    }
+    SolidBox {
+      translation 0 20.005 0.025
+      name "wall#3"
+      size 40.02 0.01 0.05
+      appearance BrushedAluminium {
+      }
+    }
+    SolidBox {
+      translation 0 -20.005 0.025
+      name "wall#4"
+      size 40.02 0.01 0.05
+      appearance BrushedAluminium {
+      }
     }
   ]
-  controller "supervisor"
-  supervisor TRUE
-  window "robot_programming_competition"
+  name "rectangle arena"
+  model "rectangle arena"
 }
-Transform {
-  translation -0.25 0 0
+Fox {
+  translation 2.17357 -15.3996 0
+  rotation 0 0 1 1.0472
+}
+WoodenBox {
+  translation 0.255562 0.00647047 0.05
+  name "wooden box(1)"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation -0.0150249 0.0498038 0.05
+  rotation 0 0 1 -1.5707953071795862
+  size 0.1 0.1 0.1
+}
+Robot {
+  translation 16.561183620209714 -16.221866074473652 0.039720579050642094
+  rotation -2.026844761508312e-06 7.998215393279097e-06 -0.9999999999659602 2.651961087754868
   children [
-    Shape {
+    DEF body Shape {
       appearance PBRAppearance {
-        baseColor 0.8 0.8 0.8
-        baseColorMap ImageTexture {
-          url [
-            "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/projects/samples/robotbenchmark/robot_programming/worlds/textures/target.png"
-          ]
-        }
-        roughness 0.5
+        baseColor 1 0 0
         metalness 0
       }
-      geometry IndexedFaceSet {
-        coord Coordinate {
-          point [
-            -0.125 -0.125 0.0001
-            0.125 -0.125 0.0001
-            0.125 0.125 0.0001
-            -0.125 0.125 0.0001
-          ]
+      geometry Box {
+        size 0.1 0.2 0.05
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -2017.7022684733863
+        anchor 0.06 0.05 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
         }
-        coordIndex [
-          0, 1, 2, 3
+      ]
+      endPoint Solid {
+        translation 0.06 0.05 0
+        rotation 0.3627934478677512 -0.8583477508778778 0.36279478048494274 4.560229911892072
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
         ]
+        boundingObject USE wheel
+        physics DEF Physics_wh Physics {
+        }
+        linearVelocity 0.018812033742382155 -0.03530024864468692 4.072288917964866e-10
+        angularVelocity 0.8825061904832504 0.47030078045439133 -1.558458079184074e-08
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -1915.3113356821123
+        anchor -0.06 0.05 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06 0.05 0
+        rotation -0.45121458024985295 -0.7699411077770663 -0.45121623765659535 4.453872592917656
+        children [
+          USE wheel
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics USE Physics_wh
+        linearVelocity 0.018812031769469863 -0.03530024493960526 -4.073041649264742e-10
+        angularVelocity 0.8825061902206983 0.47030078023529875 -1.5420071582437316e-08
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -2017.702342180463
+        anchor 0.06 -0.05 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation 0.06 -0.05 0
+        rotation 0.3628209167052266 -0.8583245293736996 0.3628222494233174 4.560203170435294
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics USE Physics_wh
+        linearVelocity 0.01881203065734175 -0.0353002502887486 4.073528627065514e-10
+        angularVelocity 0.8825061904923756 0.4703007804372693 -1.554574720510948e-08
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -1915.3114056708516
+        anchor -0.06 -0.05 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06 -0.05 0
+        rotation -0.45119312168573095 -0.7699662579193367 -0.4511947790136523 4.453904172106392
+        children [
+          USE wheel
+        ]
+        name "solid(3)"
+        boundingObject USE wheel
+        physics USE Physics_wh
+        linearVelocity 0.01881202868443732 -0.03530024658366665 -4.0718040603538945e-10
+        angularVelocity 0.8825061902298139 0.4703007802181921 -1.5381227592475856e-08
+      }
+    }
+    DistanceSensor {
+      translation 0.02 0.1 0
+      rotation 0 0 1 1.25
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left"
+      boundingObject USE sensor
+      physics Physics {
+      }
+    }
+    DistanceSensor {
+      translation -0.02 0.1 0
+      rotation 0 0 1 1.85
+      children [
+        DEF sensor Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_right"
+      boundingObject USE sensor
+      physics Physics {
       }
     }
   ]
+  boundingObject USE body
+  physics Physics {
+  }
+  controller "my_controller"
+  linearVelocity 0.018812031220187986 -0.035300247610572454 2.3940042685581114e-14
+  angularVelocity -3.254982588212714e-09 6.110575175005437e-09 3.83892638469622e-08
+}
+LargeResidentialTower {
+  translation -11.19 -4.19 0
+}
+AdvertisingBoard {
+  translation -1.14 -16.2 0
+  rotation 0 0 1 1.5708
+  frontTexture [
+    "D:/{W}/UPATecO/LOGO_UPATecO/upateco_color.png"
+  ]
+  backTexture [
+    ""
+  ]
+  displayWidth 3
+  displayHeight 2
+}
+AdvertisingBoard {
+  translation -5.1 -9.69 4.12
+  rotation 0 0 -1 -5.307179586466759e-06
+  name "advertising board(1)"
+  frontTexture [
+    "D:/{W}/UPATecO/LOGO_UPATecO/upateco_color.png"
+  ]
+  backTexture [
+    ""
+  ]
+}
+Bench {
+  translation 7.61 -2.85001 0
+  rotation 0 0 1 3.14159
+}
+Bench {
+  translation 7.61 -7.88001 0
+  rotation 0 0 1 3.14159
+  name "bench(1)"
 }
