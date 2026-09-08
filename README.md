@@ -18,30 +18,34 @@ To organize your own competition, follow the instructions in the [ORGANIZER.md](
 
 ---
 
-## Description
+## Descripción
 
 <span id="description">
 
-Write here a short description of your competition.
+Diseñar y construir una estructura de protección capaz de conservar la integridad física de un huevo de gallina crudo tras ser liberado en simulación desde una altura aproximada de entre 5 a 8 m.
+Equipo de 2 (dos) participantes.
+Supervisión: Cada prototipo debe ser homologado por la mesa técnica antes del lanzamiento.
+
 
 </span>
 
 <img src="preview/thumbnail2.jpg" width="75%">
 
-## Information
+## Información
 
 <span id="information">
 
-- Difficulty: Middle School, High School, Bachelor, Master or PhD
-- Robot: robot name
-- Language: programming language of the controller template
-- Commitment: amount of time needed to participate in the competition
+- Dificultad: Universitario
+- Robot: Huevo
+- Languaje: A elección de cada equipo (python, java, c, etc)
 
 </span>
 
 ---
 
-## How to Participate
+## Como participar
+
+(en contrucción)
 
 If not already done, [sign in](https://github.com/login) to your GitHub account or [create one](https://github.com/signup) if you don't have any.
 
