@@ -31,7 +31,7 @@ Supervisión: Cada prototipo debe ser homologado por la mesa técnica antes del 
 
 <img src="preview/thumbnail2.jpg" width="75%">
 
-## Información
+## Information
 
 <span id="information">
 
