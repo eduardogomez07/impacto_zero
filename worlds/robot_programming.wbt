@@ -10,25 +10,85 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/solids/protos/SolidBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/street_furniture/protos/Bench.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/tables/protos/Desk.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/chairs/protos/Chair.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/computers/protos/Laptop.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/humans/pedestrian/protos/Pedestrian.proto"
+EXTERNPROTO "../protos/EGG.proto"
 
 WorldInfo {
   info [
     ""
   ]
+  basicTimeStep 8
+  contactProperties [
+    ContactProperties {
+      material1 "egg"
+      material2 "floor"
+      coulombFriction [
+        0.6
+      ]
+      bounce 0.2
+      bounceVelocity 0.1
+      softCFM 1e-05
+    }
+    ContactProperties {
+      material1 "egg"
+      material2 "team_material"
+      coulombFriction [
+        0.6
+      ]
+      bounce 0.2
+      bounceVelocity 0.1
+      softCFM 1e-05
+    }
+    ContactProperties {
+      material1 "team_material"
+      material2 "floor"
+      coulombFriction [
+        0.7
+      ]
+      bounce 0.2
+      bounceVelocity 0.1
+      softERP 0.2
+      softCFM 0.001
+    }
+    ContactProperties {
+      material1 "default"
+      material2 "floor"
+      coulombFriction [
+        0.6
+      ]
+      bounce 0.2
+      bounceVelocity 0.1
+    }
+    ContactProperties {
+      material1 "default"
+      material2 "default"
+      coulombFriction [
+        0.6
+      ]
+      bounce 0.2
+      bounceVelocity 0.1
+    }
+  ]
 }
 Viewpoint {
-  orientation 0.08838263798546034 0.024599813813517914 -0.9957827867878976 2.600815468462981
-  position 14.386316423172532 5.0381755413855345 5.259667210299216
+  orientation 0.4106674722705291 0.272873233563798 -0.8699956468990929 2.0932944302055345
+  position 0.6467956530268129 0.4975912711754604 10.870979907677935
   follow "bench"
   followType "Mounted Shot"
 }
 TexturedBackground {
+  luminosity 4
 }
 TexturedBackgroundLight {
 }
 Solid {
+  translation -0.08 0 0
   children [
-    Floor {
+    DEF FLOOR Floor {
+      contactMaterial "floor"
       size 40 40
       tileSize 0.25 0.25
     }
@@ -64,23 +124,96 @@ Solid {
   name "rectangle arena"
   model "rectangle arena"
 }
+DEF TARGET_PAD Solid {
+  translation 0 0 0.001
+  children [
+    Transform {
+      translation 0 0 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 0.5
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.001
+            radius 0.5
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0 0.001
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 0
+            roughness 0.5
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.001
+            radius 0.38
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0 0.002
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 0.5
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.001
+            radius 0.22
+          }
+        }
+      ]
+    }
+  ]
+  name "target_pad"
+  contactMaterial "floor"
+  boundingObject Cylinder {
+    height 0.002
+    radius 0.5
+  }
+}
+Laptop {
+  hidden position_0_0 6.582369628410984e-06
+  hidden translation_1 -0.10000076223741934 -0.013999999999999962 0.1299997011579099
+  hidden rotation_1 0.5773082013284622 -0.5774082005892639 -0.577334400994055 2.0944638007100345
+  translation 4.319999550939807 -12.650083044802951 0.709719225921671
+  rotation 0.0870245026695229 -0.9961971016369123 -0.004250955814584958 0.0005925404257517927
+}
+Pedestrian {
+  translation 5.4853 -11.3911 1.27
+  rotation 0 0 1 -2.8797953071795863
+}
+Chair {
+  translation 5.28 -12.61 0
+  rotation 0 0 1 3.14159
+}
+Desk {
+  translation 4.52 -12.71 0
+  color 0 0 0
+}
 Fox {
   translation 2.17357 -15.3996 0
   rotation 0 0 1 1.0472
 }
 WoodenBox {
-  translation 0.255562 0.00647047 0.05
-  name "wooden box(1)"
-  size 0.1 0.1 0.1
-}
-WoodenBox {
-  translation -0.0150249 0.0498038 0.05
+  translation 0.834976 0.2598 0.05
   rotation 0 0 1 -1.5707953071795862
   size 0.1 0.1 0.1
 }
 Robot {
-  translation 16.561183620209714 -16.221866074473652 0.039720579050642094
-  rotation -2.026844761508312e-06 7.998215393279097e-06 -0.9999999999659602 2.651961087754868
+  translation 5.368265155381386 -12.190609946861104 0.0399301447626798
+  rotation 4.7043819837830085e-07 -2.0008595068976805e-06 0.9999999999978875 -2.6813681620641376
   children [
     DEF body Shape {
       appearance PBRAppearance {
@@ -93,7 +226,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -2017.7022684733863
+        position -5577.814661576446
         anchor 0.06 0.05 0
       }
       device [
@@ -103,7 +236,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0.06 0.05 0
-        rotation 0.3627934478677512 -0.8583477508778778 0.36279478048494274 4.560229911892072
+        rotation 0.5926882772790047 0.545379346236042 0.5926904543479613 2.1430182141321144
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -119,13 +252,11 @@ Robot {
         boundingObject USE wheel
         physics DEF Physics_wh Physics {
         }
-        linearVelocity 0.018812033742382155 -0.03530024864468692 4.072288917964866e-10
-        angularVelocity 0.8825061904832504 0.47030078045439133 -1.558458079184074e-08
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -1915.3113356821123
+        position -5590.613545423539
         anchor -0.06 0.05 0
       }
       device [
@@ -135,20 +266,18 @@ Robot {
       ]
       endPoint Solid {
         translation -0.06 0.05 0
-        rotation -0.45121458024985295 -0.7699411077770663 -0.45121623765659535 4.453872592917656
+        rotation 0.546373432119841 0.6347833900305948 0.5463754390662625 2.010388679973574
         children [
           USE wheel
         ]
         name "solid(1)"
         boundingObject USE wheel
         physics USE Physics_wh
-        linearVelocity 0.018812031769469863 -0.03530024493960526 -4.073041649264742e-10
-        angularVelocity 0.8825061902206983 0.47030078023529875 -1.5420071582437316e-08
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -2017.702342180463
+        position -5577.814753708121
         anchor 0.06 -0.05 0
       }
       device [
@@ -158,20 +287,18 @@ Robot {
       ]
       endPoint Solid {
         translation 0.06 -0.05 0
-        rotation 0.3628209167052266 -0.8583245293736996 0.3628222494233174 4.560203170435294
+        rotation 0.5926719785280236 0.5454147699008992 0.5926741555371109 2.142963609519497
         children [
           USE wheel
         ]
         name "solid(2)"
         boundingObject USE wheel
         physics USE Physics_wh
-        linearVelocity 0.01881203065734175 -0.0353002502887486 4.073528627065514e-10
-        angularVelocity 0.8825061904923756 0.4703007804372693 -1.554574720510948e-08
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -1915.3114056708516
+        position -5590.613633287639
         anchor -0.06 -0.05 0
       }
       device [
@@ -181,15 +308,13 @@ Robot {
       ]
       endPoint Solid {
         translation -0.06 -0.05 0
-        rotation -0.45119312168573095 -0.7699662579193367 -0.4511947790136523 4.453904172106392
+        rotation 0.5463538690765785 0.6348170654280754 0.5463558759511419 2.0103406742244236
         children [
           USE wheel
         ]
         name "solid(3)"
         boundingObject USE wheel
         physics USE Physics_wh
-        linearVelocity 0.01881202868443732 -0.03530024658366665 -4.0718040603538945e-10
-        angularVelocity 0.8825061902298139 0.4703007802181921 -1.5381227592475856e-08
       }
     }
     DistanceSensor {
@@ -234,9 +359,7 @@ Robot {
   boundingObject USE body
   physics Physics {
   }
-  controller "my_controller"
-  linearVelocity 0.018812031220187986 -0.035300247610572454 2.3940042685581114e-14
-  angularVelocity -3.254982588212714e-09 6.110575175005437e-09 3.83892638469622e-08
+  controller "<none>"
 }
 LargeResidentialTower {
   translation -11.19 -4.19 0
@@ -247,9 +370,7 @@ AdvertisingBoard {
   frontTexture [
     "D:/{W}/UPATecO/LOGO_UPATecO/upateco_color.png"
   ]
-  backTexture [
-    ""
-  ]
+  backTexture []
   displayWidth 3
   displayHeight 2
 }
@@ -260,9 +381,7 @@ AdvertisingBoard {
   frontTexture [
     "D:/{W}/UPATecO/LOGO_UPATecO/upateco_color.png"
   ]
-  backTexture [
-    ""
-  ]
+  backTexture []
 }
 Bench {
   translation 7.61 -2.85001 0
@@ -272,4 +391,146 @@ Bench {
   translation 7.61 -7.88001 0
   rotation 0 0 1 3.14159
   name "bench(1)"
+}
+DEF EGG EGG {
+  translation 0 0 10.02
+}
+DEF TEAM_PROTOTYPE Solid {
+  translation 0 0 10
+  children [
+    Transform {
+      translation 0 0 -0.06
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.3 0.3 0.35
+            roughness 0.8
+          }
+          geometry Box {
+            size 0.1 0.1 0.01
+          }
+        }
+      ]
+    }
+    Transform {
+      translation -0.045 0 -0.025
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.3 0.3 0.35
+            roughness 0.8
+          }
+          geometry Box {
+            size 0.01 0.1 0.08
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0.045 0 -0.025
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.3 0.3 0.35
+            roughness 0.8
+          }
+          geometry Box {
+            size 0.01 0.1 0.08
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0 -0.045 -0.025
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.3 0.3 0.35
+            roughness 0.8
+          }
+          geometry Box {
+            size 0.1 0.01 0.08
+          }
+        }
+      ]
+    }
+    Transform {
+      translation 0 0.045 -0.025
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.3 0.3 0.35
+            roughness 0.8
+          }
+          geometry Box {
+            size 0.1 0.01 0.08
+          }
+        }
+      ]
+    }
+    DEF PADDING Transform {
+      translation 0 0 -0.045
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.8 0.4
+            roughness 1
+          }
+          geometry Box {
+            size 0.09 0.09 0.02
+          }
+        }
+      ]
+    }
+  ]
+  name "team_prototype"
+  contactMaterial "team_material"
+  boundingObject Group {
+    children [
+      Transform {
+        translation 0 0 -0.06
+        children [
+          Box {
+            size 0.1 0.1 0.01
+          }
+        ]
+      }
+      Transform {
+        translation -0.045 0 -0.025
+        children [
+          Box {
+            size 0.01 0.1 0.08
+          }
+        ]
+      }
+      Transform {
+        translation 0.045 0 -0.025
+        children [
+          Box {
+            size 0.01 0.1 0.08
+          }
+        ]
+      }
+      Transform {
+        translation 0 -0.045 -0.025
+        children [
+          Box {
+            size 0.1 0.01 0.08
+          }
+        ]
+      }
+      Transform {
+        translation 0 0.045 -0.025
+        children [
+          Box {
+            size 0.1 0.01 0.08
+          }
+        ]
+      }
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 0.04
+  }
 }
