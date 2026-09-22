@@ -36,6 +36,7 @@ Supervisión: Cada prototipo debe ser homologado por la mesa técnica antes del 
 <span id="information">
 
 - Dificultad: Universitario
+- Fecha: 06/10/2026
 - Robot: Huevo
 - Languaje: A elección de cada equipo (python, java, c, etc)
 
